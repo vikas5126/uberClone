@@ -3,7 +3,7 @@ import {createContext, useState} from 'react'
 export const UserDataContext = createContext()
 
 // eslint-disable-next-line react/prop-types
-export const UserContext = ({children}) => {
+const UserContext = ({children}) => {
     const [user, setUser] = useState({
         email: '',
         fullName:{
@@ -19,3 +19,5 @@ export const UserContext = ({children}) => {
     </div>
   )
 }
+
+export default UserContext;
