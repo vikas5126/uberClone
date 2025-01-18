@@ -1,9 +1,7 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useContext } from 'react';
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const CaptainDataContext = createContext();
 
-// eslint-disable-next-line react/prop-types
 const CaptainContext = ({ children }) => {
     const [ captain, setCaptain ] = useState(null);
     const [ isLoading, setIsLoading ] = useState(false);
@@ -25,7 +23,7 @@ const CaptainContext = ({ children }) => {
 
     return (
         <CaptainDataContext.Provider value={value}>
-          {children}
+            {children}
         </CaptainDataContext.Provider>
     );
 };

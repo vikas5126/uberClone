@@ -3,11 +3,11 @@ const captainModel = require('../models/captain.model');
 
 module.exports.getAddressCoordinate = async (address) => {
     const apiKey = process.env.GOOGLE_MAPS_API;
-    // const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
-    
-    const url = `https://maps.gomaps.pro/maps/api/geocode/json?address=${address}key=${apiKey}`
+    // const url = `https://maps.googleapis.com/maps/api/geocode/json?address=`;
+    const url = `https://maps.gomaps.pro/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`
     try {
         const response = await axios.get(url);
+        // console.log(response);
         if (response.data.status === 'OK') {
             const location = response.data.results[ 0 ].geometry.location;
             return {
@@ -30,7 +30,7 @@ module.exports.getDistanceTime = async (origin, destination) => {
 
     const apiKey = process.env.GOOGLE_MAPS_API;
 
-    const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${encodeURIComponent(origin)}&destinations=${encodeURIComponent(destination)}&key=${apiKey}`;
+    const url = `https://maps.gomaps.pro/maps/api/distancematrix/json?origins=${encodeURIComponent(origin)}&destinations=${encodeURIComponent(destination)}&key=${apiKey}`;
 
     try {
 
@@ -55,24 +55,26 @@ module.exports.getDistanceTime = async (origin, destination) => {
 
 module.exports.getAutoCompleteSuggestions = async (input) => {
     if (!input) {
-        throw new Error('query is required');
+        throw new Error('Input query is required');
     }
 
-    const apiKey = process.env.GOOGLE_MAPS_API;
-    const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${encodeURIComponent(input)}&key=${apiKey}`;
+    const apiKey = process.env.GOOGLE_MAPS_API; // Ensure this is set correctly
+    const url = `https://maps.gomaps.pro/maps/api/place/queryautocomplete/json?input=${encodeURIComponent(input)}&key=${apiKey}`;
 
     try {
         const response = await axios.get(url);
         if (response.data.status === 'OK') {
             return response.data.predictions.map(prediction => prediction.description).filter(value => value);
         } else {
-            throw new Error('Unable to fetch suggestions');
+            console.error(`API Error: ${response.data.status}`, response.data);
+            throw new Error(`API returned status: ${response.data.status}`);
         }
     } catch (err) {
-        console.error(err);
+        console.error('Error fetching autocomplete suggestions:', err.response?.data || err.message);
         throw err;
     }
-}
+};
+
 
 module.exports.getCaptainsInTheRadius = async (ltd, lng, radius) => {
 

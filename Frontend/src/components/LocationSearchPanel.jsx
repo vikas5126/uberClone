@@ -1,15 +1,32 @@
 import React from 'react'
 
 // eslint-disable-next-line react/prop-types
-const LocationSearchPanel = ({setVehiclePanel, setPanelOpen}) => {
-  return (
-    <div className='pt-4 pl-4' onClick={()=>{ setVehiclePanel(true); setPanelOpen(false); }}>
-        <div className='flex items-center justify-start'>
-            <h2 className='bg-[#eee] h-8 w-8 rounded-full flex items-center justify-center mr-2'><i className='ri-map-pin-fill'></i></h2>
-            <h4 className='font-medium '>g-838, shakur pur , delhi-110034</h4>
+const LocationSearchPanel = ({ suggestions, setVehiclePanel, setPanelOpen, setPickup, setDestination, activeField }) => {
+
+    const handleSuggestionClick = (suggestion) => {
+        if (activeField === 'pickup') {
+            setPickup(suggestion)
+        } else if (activeField === 'destination') {
+            setDestination(suggestion)
+        }
+        // setVehiclePanel(true)
+        // setPanelOpen(false)
+    }
+
+    return (
+        <div>
+            {/* Display fetched suggestions */}
+            {
+                // eslint-disable-next-line react/prop-types
+                suggestions.map((elem, idx) => (
+                    <div key={idx} onClick={() => handleSuggestionClick(elem)} className='flex gap-4 border-2 p-3 border-gray-50 active:border-black rounded-xl items-center my-2 justify-start'>
+                        <h2 className='bg-[#eee] h-8 flex items-center justify-center w-12 rounded-full'><i className="ri-map-pin-fill"></i></h2>
+                        <h4 className='font-medium'>{elem}</h4>
+                    </div>
+                ))
+            }
         </div>
-    </div>
-  )
+    )
 }
 
 export default LocationSearchPanel
