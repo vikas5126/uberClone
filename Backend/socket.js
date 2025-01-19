@@ -13,7 +13,7 @@ function initializeSocket(server) {
     });
 
     io.on('connection', (socket) => {
-        console.log(`Client connected: ${socket.id}`);
+        // console.log(`Client connected: ${socket.id}`);
 
 
         socket.on('join', async (data) => {
@@ -45,19 +45,19 @@ function initializeSocket(server) {
         });
 
         socket.on('disconnect', () => {
-            console.log(`Client disconnected: ${socket.id}`);
+            // console.log(`Client disconnected: ${socket.id}`);
         });
     });
 }
 
 const sendMessageToSocketId = (socketId, messageObject) => {
 
-console.log(messageObject);
+// console.log(messageObject);
 
     if (io) {
         io.to(socketId).emit(messageObject.event, messageObject.data);
     } else {
-        console.log('Socket.io not initialized.');
+        // console.log('Socket.io not initialized.');
     }
 }
 

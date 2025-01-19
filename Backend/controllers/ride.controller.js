@@ -70,7 +70,7 @@ module.exports.confirmRide = async (req, res) => {
     }
 
     const { rideId } = req.body;
-    console.log(rideId);
+    // console.log(rideId);
 
     try {
         const ride = await rideService.confirmRide({ rideId, captain: req.captain });
@@ -99,7 +99,7 @@ module.exports.startRide = async (req, res) => {
     try {
         const ride = await rideService.startRide({ rideId, otp, captain: req.captain });
 
-        console.log(ride);
+        // console.log(ride);
 
         sendMessageToSocketId(ride.user.socketId, {
             event: 'ride-started',

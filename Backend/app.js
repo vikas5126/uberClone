@@ -11,6 +11,11 @@ const mapRoutes = require('./routes/maps.routes');
 const rideRoutes = require('./routes/ride.routes');
 
 connectToDb();
+// app.use(cors({
+//     origin: ["https://uber-clone-api-ten.vercel.app"],
+//     methods:["POST", "GET"],
+//     credentials: true
+// }));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
