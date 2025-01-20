@@ -1,6 +1,8 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken')
+
+
+import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 // const { removeListener } = require('./user.model');
 
 const captainSchema = new mongoose.Schema({
@@ -88,4 +90,4 @@ captainSchema.statics.hashPassword = async function(password){
 
 const captainModel = mongoose.model('captain', captainSchema);
 
-module.exports = captainModel;
+export default captainModel;

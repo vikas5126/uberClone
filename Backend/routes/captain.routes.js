@@ -1,8 +1,10 @@
-const express = require('express');
+// Initilizing the express router
+import express from 'express';
+import captainController from '../controllers/captain.controller.js';
+import { body } from 'express-validator';
+import middlware from '../middleware/auth.middleware.js';
+
 const router = express.Router();
-const captainController = require('../controllers/captain.controller');
-const {body} = require('express-validator');
-const middlware = require('../middleware/auth.middleware');
 
 router.post('/register', [
     body('email').isEmail().withMessage('Invalid Email'),
@@ -24,4 +26,4 @@ router.get('/profile', middlware.authCaptain ,captainController.getProfile);
 
 router.get('/logout', middlware.authCaptain, captainController.logoutCaptain);
 
-module.exports = router
+export default router;

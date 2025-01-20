@@ -1,8 +1,11 @@
-const express = require('express');
-const router = express.Router();
-const { body, query } = require('express-validator');
-const rideController = require('../controllers/ride.controller');
-const authMiddleware = require('../middleware/auth.middleware');
+// Initilize express router
+import express from 'express'
+import { body, query } from 'express-validator'
+import rideController from '../controllers/ride.controller.js'
+import authMiddleware from '../middleware/auth.middleware.js'
+
+const router = express.Router()
+
 
 
 router.post('/create',
@@ -41,4 +44,4 @@ router.post('/end-ride',
 
 
 
-module.exports = router;
+export default router;

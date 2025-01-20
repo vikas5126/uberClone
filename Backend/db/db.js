@@ -1,10 +1,9 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-function conncectToDbs(){
-    mongoose.connect(process.env.DB_CONNECT).then(()=>{
-        // mongoose.connect('mongodb+srv://vikas18046171:<Allenkota@123>@cluster0.o0cfg.mongodb.net/uberClone').then(()=>{
-        // console.log('connected to DB');
-    }).catch(err=> console.log(err))
+function connectToDb() {
+  mongoose.connect(process.env.DB_CONNECT).then(() => {
+    // console.log('connected to DB');
+  }).catch(err => console.log(err));
 }
 
-module.exports = conncectToDbs
+export default connectToDb;
