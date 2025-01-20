@@ -1,8 +1,10 @@
-const express = require('express');
+// Initialize express router
+import express from 'express';
+import { query } from 'express-validator';
+import mapController from '../controllers/map.controller.js';
+import authmiddleware from '../middleware/auth.middleware.js';
+
 const router = express.Router();
-const mapController = require('../controllers/map.controller');
-const authmiddleware = require('../middleware/auth.middleware');
-const {query} = require('express-validator');
 
 router.get('/get-coordinates',
     query('address').isString().isLength({min: 3}),
@@ -23,4 +25,4 @@ router.get('/get-suggestions',
     mapController.getAutoCompleteSuggestions
 )
 
-module.exports = router;
+export default router;

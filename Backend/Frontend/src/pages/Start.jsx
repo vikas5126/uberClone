@@ -55,12 +55,12 @@ const Start = () => {
   })
 
   socket.on('ride-started', ride => {
-      console.log("ride")
+      // console.log("ride")
       setWaitingForDriver(false)
       navigate('/riding', { state: { ride } }) // Updated navigate to include ride data
   })
   const handlePickupChange = async (e) => {
-    console.log(localStorage.getItem('token'));
+    // console.log(localStorage.getItem('token'));
       setPickup(e.target.value)
       try {
           const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/map/get-suggestions`, {
@@ -180,7 +180,7 @@ const Start = () => {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     })
-    console.log(response.data);
+    // console.log(response.data);
 }
   return (
     <div className='relative h-screen overflow-hidden'>

@@ -22,7 +22,7 @@ const CaptainHome = () => {
   const {socket} = useContext(SocketContext);
 
   useEffect(()=>{
-    console.log(captain);
+    // console.log(captain);
     socket.emit('join', {
         userId: captain._id,
         userType: 'captain'
@@ -47,7 +47,7 @@ const CaptainHome = () => {
   }, [captain])
 
   socket.on('new-ride', (data)=> {
-    console.log(data);
+    // console.log(data);
     setRide(data);
     setRidePopupPanel(true);
   })
